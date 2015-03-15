@@ -1,0 +1,45 @@
+#ifndef __ip_h
+#define __ip_h
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+
+#define MAX 100
+
+ typedef struct ip_frag
+        {
+        	unsigned long ip_addr;
+                int id;
+                int fragoffset;
+                int more_frames;
+                int length;
+                int ipdup_flag;
+                struct ip_frag *next; 
+        }ip_frag;
+
+//ip_frag *temp=NULL,*temp1=NULL,*temp2;
+ip_frag *iparr[MAX]; 
+
+struct in_addr ipad;
+extern int k;
+ extern int count;
+
+void check_mismatch_length(ip_frag *);
+void check_duplicate_frags(ip_frag *);
+void check_missing_pkts(ip_frag *temp);
+int check_duplicate(unsigned long ,int ,int ,int);
+int check_frag_in_rcv_array(unsigned long,int);
+ip_frag* make_frag(unsigned long,int ,int ,int ,int );
+int get_pos_in_rcv_array(unsigned long,int );
+
+
+
+
+#endif // __ip_h
+
+
+

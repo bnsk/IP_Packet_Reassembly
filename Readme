@@ -1,0 +1,8 @@
+-->   How to compile
+$ make
+
+-->   How to run
+$./ip_reassembly input-filename
+
+-->   How to remove .o files
+$make clean
